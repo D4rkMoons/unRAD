@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<domain type='kvm' id='24' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
+<domain type='kvm' id='45' xmlns:qemu='http://libvirt.org/schemas/domain/qemu/1.0'>
   <name>Macinabox BigSur</name>
   <uuid>e49b7c81-2fa6-4da9-8ae7-fbed7a6da3db</uuid>
   <description>MacOS Big Sur</description>
@@ -61,25 +61,6 @@
       <alias name='sata0-0-3'/>
       <address type='drive' controller='0' bus='0' target='0' unit='3'/>
     </disk>
-    <controller type='usb' index='0' model='ich9-ehci1'>
-      <alias name='usb'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x7'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci1'>
-      <alias name='usb'/>
-      <master startport='0'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0' multifunction='on'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci2'>
-      <alias name='usb'/>
-      <master startport='2'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x1'/>
-    </controller>
-    <controller type='usb' index='0' model='ich9-uhci3'>
-      <alias name='usb'/>
-      <master startport='4'/>
-      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x2'/>
-    </controller>
     <controller type='pci' index='0' model='pcie-root'>
       <alias name='pcie.0'/>
     </controller>
@@ -127,10 +108,29 @@
       <alias name='ide'/>
       <address type='pci' domain='0x0000' bus='0x00' slot='0x1f' function='0x2'/>
     </controller>
+    <controller type='usb' index='0' model='ich9-ehci1'>
+      <alias name='usb'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x7'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci1'>
+      <alias name='usb'/>
+      <master startport='0'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x0' multifunction='on'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci2'>
+      <alias name='usb'/>
+      <master startport='2'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x1'/>
+    </controller>
+    <controller type='usb' index='0' model='ich9-uhci3'>
+      <alias name='usb'/>
+      <master startport='4'/>
+      <address type='pci' domain='0x0000' bus='0x00' slot='0x07' function='0x2'/>
+    </controller>
     <interface type='bridge'>
       <mac address='52:54:00:f6:24:a7'/>
       <source bridge='br0'/>
-      <target dev='vnet23'/>
+      <target dev='vnet43'/>
       <model type='e1000-82545em'/>
       <alias name='net0'/>
       <address type='pci' domain='0x0000' bus='0x01' slot='0x00' function='0x0'/>
@@ -148,7 +148,7 @@
       <alias name='serial0'/>
     </console>
     <channel type='unix'>
-      <source mode='bind' path='/var/lib/libvirt/qemu/channel/target/domain-24-Macinabox BigSur/org.qemu.guest_agent.0'/>
+      <source mode='bind' path='/var/lib/libvirt/qemu/channel/target/domain-45-Macinabox BigSur/org.qemu.guest_agent.0'/>
       <target type='virtio' name='org.qemu.guest_agent.0' state='disconnected'/>
       <alias name='channel0'/>
       <address type='virtio-serial' controller='0' bus='0' port='1'/>
@@ -181,21 +181,13 @@
       <alias name='hostdev1'/>
       <address type='pci' domain='0x0000' bus='0x04' slot='0x00' function='0x0'/>
     </hostdev>
-    <hostdev mode='subsystem' type='pci' managed='yes'>
-      <driver name='vfio'/>
-      <source>
-        <address domain='0x0000' bus='0x2a' slot='0x00' function='0x3'/>
-      </source>
-      <alias name='hostdev2'/>
-      <address type='pci' domain='0x0000' bus='0x05' slot='0x00' function='0x0'/>
-    </hostdev>
     <hostdev mode='subsystem' type='usb' managed='no'>
       <source startupPolicy='optional'>
         <vendor id='0x1912'/>
         <product id='0x2824'/>
         <address bus='1' device='17'/>
       </source>
-      <alias name='hostdev3'/>
+      <alias name='hostdev2'/>
       <address type='usb' bus='0' port='2'/>
     </hostdev>
     <memballoon model='none'/>
